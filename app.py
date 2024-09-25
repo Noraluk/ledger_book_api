@@ -1,13 +1,12 @@
+from fastapi import FastAPI, File, UploadFile
 import numpy as np
 import cv2
-from fastapi import FastAPI, File, UploadFile
 import uvicorn
 
 from services.image_processing import get_contours_text_image
 from services.text_processing import get_texts
 
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
@@ -23,6 +22,3 @@ async def read_item(file: UploadFile = File(...)):
         contours = get_contours_text_image(img)
         return get_texts(img, contours)
         
-
-if __name__ == "__main__":
-    uvicorn.run("main:app",host="0.0.0.0",port=8000,log_level="info")
