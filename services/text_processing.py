@@ -1,6 +1,9 @@
 import easyocr
+import os
 
-text_reader = easyocr.Reader(['en'])
+os.makedirs('/app/.EasyOCR', exist_ok=True)
+os.environ['EASYOCR_CACHE_DIR'] = '/app/.EasyOCR'
+text_reader = easyocr.Reader(['en'], model_storage_directory=os.environ['EASYOCR_CACHE_DIR'])
 
 def adjust_image_to_get_text(image,x,y,w,h,y_th):
     new_im = image[y:y+h+y_th,x-5:x+w]
