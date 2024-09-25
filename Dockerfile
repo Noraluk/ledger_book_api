@@ -9,10 +9,10 @@ ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
-RUN --chown=user apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
-
 COPY --chown=user ./requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY --chown=user . /app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
