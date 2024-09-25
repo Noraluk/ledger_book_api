@@ -9,7 +9,7 @@ ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+RUN --chown=user apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY --chown=user ./requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
