@@ -5,6 +5,8 @@ FROM python:3.11
 
 WORKDIR /app
 
+RUN mkdir -p /app/.EasyOCR && chmod -R 777 /app/.EasyOCR
+
 RUN  apt update && apt install -y ffmpeg libsm6 libxext6
 
 COPY ./requirements.txt ./requirements.txt
