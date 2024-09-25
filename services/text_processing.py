@@ -1,5 +1,6 @@
 import easyocr
-import os
+
+text_reader = easyocr.Reader(['en'], gpu=False)
 
 def adjust_image_to_get_text(image,x,y,w,h,y_th):
     new_im = image[y:y+h+y_th,x-5:x+w]
